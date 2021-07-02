@@ -1,0 +1,68 @@
+/***
+atttion: the answer is partly accepted. You can adjust these codes.
+
+题目：直接搜索PAT 1025反转链表
+
+
+
+
+***/
+
+
+#include<iostream>
+#include<algorithm>
+#include<iomanip>
+#include<cstdio>
+using namespace std;
+
+const int  maxn =100010;
+
+int add1[maxn],add2[maxn],add3[maxn];
+
+int main()
+{
+    int first_address;
+    int n;
+    int k;
+    int temp;
+    cin>>first_address>>n>>k;
+
+
+    for(int i=0;i<n;i++)
+    {
+        cin>>temp;
+        cin>>add1[temp];
+        cin>>add2[temp];
+    }
+
+
+    int j=0;
+    temp=first_address;
+    while(temp!=-1)
+    {
+        add3[j]=temp;
+        j++;
+        temp=add2[temp];
+    }
+
+    for(int kk=0;kk<(n/k);kk++)
+    {
+        reverse(begin(add3)+kk*k,begin(add3)+k*(kk+1));
+
+    }
+
+
+
+
+
+    for(int jj=0;jj<n-1;jj++)
+    {
+        //cout<<setfill('0')<<setw(5)<<add3[jj]<<" "<<setfill('0')<<setw(5)<<add1[add3[jj]]<<" "<<  setfill('0')<<setw(5)<<add3[jj+1]<<endl;
+        printf("%05d %d %05d\n",add3[jj],add1[add3[jj]],add3[jj+1]);
+    }
+
+   // cout<<setfill('0')<<setw(5)<<add3[n-1]<<" "<<setfill('0')<<setw(5)<<add1[add3[n-1]]<<" "<<-1<<endl;
+
+    printf("%05d %d -1\n",add3[n-1],add1[add3[n-1]]);
+
+}
